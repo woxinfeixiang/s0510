@@ -9,6 +9,7 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from courses.models import Course
 from operation.models import UserFavorite
 from .models import CourseOrg, CityDict, Teacher
+from organization.forms import UserAskForm
 from django.http import HttpResponse
 # Create your views here.
 
@@ -56,6 +57,19 @@ class OrgView(View):
             "sort": sort,
             "search_keywords": search_keywords,
         })
+
+
+class AddUserAskView(View):
+    """
+    用户添加咨询
+    """
+    def post(self, request):
+        userask_form = UserAskForm(request.POST)
+        if userask_form.is_valid():
+            user_ask = userask_form.save(commit=True)
+            return HttpResponse('{"status":"success"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"fail", "msg":"您的字段有错误，请检查"}', content_type='application/json')
 
 
 

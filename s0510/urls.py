@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name="user_active"),
     # 课程机构
     url(r'^org-list/$', OrgView.as_view(), name="modify_pwd"),
-    #url(r'^org/', include('organization.urls', name="org")),
+    # url(r'^org/', include('organization.urls', name="org")),
     # 图片路径
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT }),
 ]
